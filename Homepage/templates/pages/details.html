@@ -1,0 +1,322 @@
+{% extends 'pages/base.html'%}
+{% load static %}
+
+{% block head %}
+<style>
+/* Basic Styling */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+ 
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px;
+  display: flex;
+}
+/* Columns */
+.left-column {
+  width: 65%;
+  position: relative;
+}
+ 
+.right-column {
+  width: 35%;
+  margin-top: 60px;
+  margin-left: 25px;
+}
+/* Left Column */
+.left-column .image {
+  width: 100%;
+  aspect-ratio: 1/1;
+  /*position: absolute;*/
+  left: 0;
+  top: 0;
+  opacity: 1;
+  transition: all 0.3s ease;
+  background: url("{% static image %}");
+  background-size: cover;
+  background-position: center;
+  box-shadow: 10px 10px 5px 5px #00000034;
+}
+ 
+.left-column .image.active {
+  opacity: 1;
+}
+/* Product Description */
+.product-description {
+  border-bottom: 1px solid #E1E8EE;
+  margin-bottom: 20px;
+}
+.product-description span {
+  font-size: 12px;
+  color: #ffbb00;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+.product-description h1 {
+  font-weight: 300;
+  font-size: 52px;
+  color: #000;
+  letter-spacing: -2px;
+}
+.product-description p {
+  font-size: 16px;
+  font-weight: 300;
+  color: #000;
+  line-height: 24px;
+}
+/* Product Color */
+.product-color {
+  margin-bottom: 30px;
+}
+ 
+.color-choose div {
+  display: inline-block;
+}
+ 
+.color-choose input[type='&amp;quot;radio&amp;quot;'] {
+  display: none;
+}
+ 
+.color-choose input[type='&amp;quot;radio&amp;quot;'] + label span {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  margin: -1px 4px 0 0;
+  vertical-align: middle;
+  cursor: pointer;
+  border-radius: 50%;
+}
+ 
+.color-choose input[type='&amp;quot;radio&amp;quot;'] + label span {
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 1px 3px 0 rgba(0,0,0,0.33);
+}
+ 
+.color-choose input[type='&amp;quot;radio&amp;quot;']#red + label span {
+  background-color: #C91524;
+}
+.color-choose input[type='&amp;quot;radio&amp;quot;']#blue + label span {
+  background-color: #314780;
+}
+.color-choose input[type='&amp;quot;radio&amp;quot;']#black + label span {
+  background-color: #323232;
+}
+ 
+.color-choose input[type='&amp;quot;radio&amp;quot;']:checked + label span {
+  background-image: url(images/check-icn.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+}
+/* Details Configuration */
+.details-choose {
+  margin-bottom: 20px;
+}
+ 
+.details-choose button {
+  border: 2px solid #E1E8EE;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 14px;
+  color: #373d46;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all .1s;
+}
+ 
+.details-choose button:hover{
+    border: 2px solid #373d46;
+}
+.details-choose button.details-active{
+    transform: scale(1.1);
+    background-color: #0747a2;
+    color: #ffa600;
+    border: 2px solid #ffa600;
+}
+.details-choose button:focus {
+  border: 2px solid #86939E;
+  outline: none;
+}
+ 
+.details-config {
+  border-bottom: 1px solid #E1E8EE;
+  margin-bottom: 20px;
+}
+ 
+.details-config a {
+  color: #358ED7;
+  text-decoration: none;
+  font-size: 12px;
+  position: relative;
+  margin: 10px 0;
+  display: inline-block;
+}
+.details-config a:before {
+  content: '&amp;quot;?&amp;quot;';
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  border: 2px solid rgba(53, 142, 215, 0.5);
+  display: inline-block;
+  text-align: center;
+  line-height: 16px;
+  opacity: 0.5;
+  margin-right: 5px;
+}
+/* Product Price */
+.product-price {
+  display: flex;
+  align-items: center;
+}
+ 
+.product-price span {
+  font-size: 26px;
+  font-weight: 300;
+  color: #000000;
+  margin-right: 20px;
+}
+
+.cart-btn {
+  display: inline-block;
+  background-color: #ffae00;
+  border-radius: 6px;
+  font-size: 16px;
+  color: orangered;
+  text-decoration: none;
+  padding: 12px 30px;
+  transition: all .5s;
+  border: 2px solid orangered;
+}
+.cart-btn:hover {
+  background-color: orange;
+}
+/* Responsive */
+@media (max-width: 940px) {
+  .container {
+    flex-direction: column;
+    margin-top: 60px;
+  }
+ 
+  .left-column,
+  .right-column {
+    width: 100%;
+  }
+ 
+  .left-column img {
+    width: 300px;
+    right: 0;
+    top: -65px;
+    left: initial;
+  }
+}
+ 
+
+
+.rating{
+    border-bottom: 1px solid #E1E8EE;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.rating div{
+    width: 25%;
+    height: 100%;
+    aspect-ratio: 5/1;
+    padding: 0 0;
+    justify-content: space-between ;
+    display: flex;
+}
+.rating img{
+    width: 20%;
+    aspect-ratio: 1/1;
+}
+</style>
+{% endblock %}
+
+{% block title%}
+InnoTech - Future Technology
+{% endblock %}
+
+{% block contents%}
+<main class="container">
+ 
+    <!-- Left Column / Headphones Image -->
+    <div class="left-column">
+      <div class="image active" alt=""></div>
+    </div>
+   
+   
+    <!-- Right Column -->
+    <div class="right-column">
+   
+      <!-- Product Description -->
+      <div class="product-description">
+        <span>Headphones</span>
+        <h1>{{name}}</h1>
+        <p>{{description}}</p>
+        <h6>Sale by @{{owner}}</h6>
+      </div>
+   
+        <!-- Product Configuration -->
+        <div class="product-configuration">
+            <!-- details Configuration -->
+            <div class="details-config">
+                {% for key, value in details.items %} 
+                <span>{{key}}</span>
+                <div class="details-choose">
+                    {% for val in value %}
+                    <button class="details-choose-{{key}}">{{val}}</button>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="rating">
+            <div>
+                {% for star in ratingstar %}
+                    {% if star == 10 %}
+                        <img src="{% static 'image/star1.png' %}" alt="">
+                    {% endif %}
+                    {% if star == 5 %}
+                        <img src="{% static 'image/star2.png' %}" alt="">
+                    {% endif %}
+                    {% if star == 0 %}
+                        <img src="{% static 'image/star3.png' %}" alt="">
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <h6>{{rating}}</h6>
+        </div>
+   
+        <!-- Product Pricing -->
+        <div class="product-price">
+            <span>{{price}}$</span>
+            <a href="#" class="cart-btn">Add to cart</a>
+        </div>
+    </div>
+  </main>
+{% endblock %}
+{% block script %}
+
+    {% for key, value in details.items %} 
+    <script>
+    var {{key}} = document.querySelectorAll(".details-choose-{{key}}");
+    
+    {{key}}.forEach(detail => {
+        detail.addEventListener('click', function(e){
+            {{key}}.forEach(n => {
+                n.classList.remove('details-active')
+            });
+            detail.classList.add('details-active')
+        })
+    });
+    </script>
+    {% endfor %}
+{% endblock %}

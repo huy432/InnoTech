@@ -1,0 +1,78 @@
+{% extends 'pages/homepage.html'%}
+{% load static %}
+
+{% block head2 %}
+<style>
+body{
+    background-color:#B3E5FC;
+    border-radius: 10px;
+}
+.stats{
+    background: #f2f5f8 !important;
+    color: #000 !important;
+}
+.articles{
+  font-size:10px;
+  color: #a1aab9;
+}
+.number1{
+  font-weight:500;
+}
+.followers{
+    font-size:10px;
+    color: #a1aab9;
+}
+.number2{
+  font-weight:500;
+}
+.rating{
+    font-size:10px;
+    color: #a1aab9;
+}
+.number3{
+  font-weight:500;
+}
+</style>
+{% endblock %}
+
+{% block title%}
+InnoTech - Future Technology
+{% endblock %}
+
+{% block titleuser %}
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card p-3" style="max-width: 800px;width: 90%;border: none;border-radius: 10px;background-color: #fff;">
+        <div class="d-flex align-items-center">
+            <div class="image w-25">
+                <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=80" class="rounded" style="width: 100%;">
+            </div>
+            <div class="ml-3 w-75 ms-2">
+                <h4 class="mb-0 mt-0">{{user.name}}</h4>
+                <span>{{user.username}}</span>
+                <div class="p-2 mt-2 bg-primary d-flex justify-content-around rounded text-white stats">
+                    <div class="d-flex flex-column w-25">
+                        <span class="articles text-wrap" style="width: 5rem;">Articles</span>
+                        <span class="number1">38</span>
+                    </div>
+                    <div class="d-flex flex-column w-25">
+                        <span class="followers text-wrap" style="width: 5rem;">Followers</span>
+                        <span class="number2">980</span>        
+                    </div>
+                    <div class="d-flex flex-column w-25">
+                        <span class="rating text-wrap" style="width: 5rem;">Rating</span>
+                        <span class="number3">8.9</span>
+                    </div>
+                </div>
+                <div class="button mt-2 d-flex flex-row align-items-center justify-content-end">
+                    {% if own == False %}
+                    <button class="btn btn-sm btn-outline-primary w-50" style="max-width: 128px">Chat</button>
+                    <button class="btn btn-sm btn-primary w-50 ml-2" style="max-width: 128px">Follow</button>
+                    {% else %}
+                    <button class="btn btn-sm btn-primary w-50 ml-2" style="max-width: 128px">Sale</button>
+                    {% endif %}
+                </div>
+            </div> 
+        </div>
+    </div>
+ </div>
+{% endblock %}

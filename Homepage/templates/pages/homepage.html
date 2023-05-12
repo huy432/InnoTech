@@ -1,0 +1,76 @@
+{% extends 'pages/base.html'%}
+{% load static %}
+
+{% block head %}
+<style>
+.custom-card{
+    cursor: pointer;
+    border-color: #0562b4;
+    border-width:3px;
+  }
+  .custom-card:hover{
+    border-color: #E68300;
+    border-width:3px;
+  }
+  .rating{
+    width: 35%;
+    aspect-ratio: 5/1;
+  }
+  .rating img{
+    background: #E68300;
+    background: linear-gradient(90deg, #E68300 30%, transparent 30%);
+    width: 100%;
+    height: 100%;
+  }
+</style>
+
+{% endblock %}
+
+{% block head2 %}
+{% endblock head2 %}
+
+{% block title%}
+InnoTech - Future Technology
+{% endblock %}
+
+{% block contents%}
+{% block titleuser %}
+{% endblock titleuser %}
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {% for product in products %}
+            <div class="col mb-5">
+                <div class="card h-100 custom-card">
+                    <div class="badge bg-warning text-white position-absolute" style="top: 0.5rem; right: 0.5rem">Sale</div>
+                    <img class="card-img-top" src="{% static 'image/products/90.jpg' %}" alt="..." />
+                    <div class="card-body p-4">
+                        <div class="text-center">
+                            <h5 class="fw-bolder">Canon 980G - Mark 7</h5>
+                            <div class="d-flex justify-content-center small text-warning mb-2">
+                                <div class="rating">
+                                    <img src="{% static 'image/stars.svg' %}" alt="">
+                                </div>
+                            </div>
+                            <span class="text-muted text-decoration-line-through">$20.00</span>
+                            $40.00 - $80.00
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        <div class="w-100 d-flex justify-content-center">
+            <nav aria-label="Page navigation example">
+            <ul class="pagination">
+              <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">Next</a></li>
+            </ul>
+          </nav>
+        </div>
+        
+    </div>
+</section>
+{% endblock %}
